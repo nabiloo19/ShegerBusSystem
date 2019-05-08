@@ -10,15 +10,17 @@ int main()
     Sheger Driver;
     monitor m;
     int choice,how_many,pass;
-    char retry;
+    char retry, CHOICES;;
 
     do
     {
+        home:
         system("cls");
-        cout<<"You Are:-";
+
+        cout<<"\n\nYou Are:-\n";
         cout<<"\n1,Registrar";
         cout<<"\n2,Monitor";
-        cout<<"\n3,Exit";
+        cout<<"\n3,Exit\n";
         cout<<"\nSelect: #";
         cin>>choice;
 
@@ -29,13 +31,15 @@ int main()
              if(pass==1234){
             do
             {
+                menu:
                 system("cls");
+
                 cout<<"*Menu*";
                 cout<<"\n\n 1,Register";
                 cout<<"\n 2,Display";
                 cout<<"\n 3,Search ";
                 cout<<"\n 4,Update ";
-                cout<<"\n 5,Delete ";
+                cout<<"\n 5,Delete \n";
                 cout<<"\nSelect Your Choice: #";
                 cin>>choice;
 
@@ -78,8 +82,26 @@ system("cls");
 
 
                 default:
-                    system("cls");
-                    cout<<"\n!Invalid entry!";
+
+                    cout<<"\n!Invalid entry!\n";
+                    cout<<"\n!Wanna the main menu, press 'm' !";
+                    cout<<"\n!Wanna go back a step, press 'n' !\n\n";
+                    cin>>CHOICES;
+                    if(CHOICES=='M'|| CHOICES=='m')
+                    {
+
+                        goto home;
+                    }
+
+                    else if(CHOICES=='n'|| CHOICES=='N')
+                    {
+
+                        goto menu;
+                    }
+
+                    else{
+                        exit(0);
+                    }
                     break;
                 }
 
@@ -102,13 +124,34 @@ system("cls");
             {
 
             case 1:
-                m.display();
+                cout<<"Under Building\n";
             case 2:
                 //next time
+                cout<<"Under Building\n";
+
             break;
 
-            default:
-                cout<<"\nInvalid Entry\n";
+                default:
+
+                    cout<<"\n!Invalid entry!\n";
+                    cout<<"\n!Wanna the main menu, press 'm' !";
+                    cout<<"\n!Wanna go back a step, press 'n' !\n\n";
+                    cin>>CHOICES;
+                    if(CHOICES=='M'|| CHOICES=='m')
+                    {
+
+                        goto home;
+                    }
+
+                    else if(CHOICES=='n'|| CHOICES=='N')
+                    {
+
+                        goto menu;
+                    }
+
+                    else{
+                        exit(0);
+                    }
             }
         }
 
