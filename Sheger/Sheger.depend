@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1557172687 source:d:\books\dsa projects\sheger\main.cpp
+	<iostream>
+	"Sheger.h"
+	"monitor.h"
+	<cstdlib>
+	<conio.h>
+
+1557170402 d:\books\dsa projects\sheger\include\sheger.h
+
+1557171907 source:d:\books\dsa projects\sheger\src\sheger.cpp
+	"Sheger.h"
+	<iostream>
+	"Sheger.h"
+	<fstream>
+	<conio.h>
+
+1557171915 d:\books\dsa projects\sheger\include\monitor.h
+	<Sheger.h>
+
+1557171924 source:d:\books\dsa projects\sheger\src\monitor.cpp
+	"monitor.h"
+
+1557272988 source:c:\users\nabil\desktop\dsa\sheger\main.cpp
+	<iostream>
+	"Sheger.h"
+	"monitor.h"
+	<cstdlib>
+	<conio.h>
+
+1557269679 c:\users\nabil\desktop\dsa\sheger\include\sheger.h
+
+1557268835 c:\users\nabil\desktop\dsa\sheger\include\monitor.h
+	"Sheger.h"
+
+1557132326 source:c:\users\nabil\desktop\dsa\sheger\src\monitor.cpp
+	"monitor.h"
+
+1557272952 source:c:\users\nabil\desktop\dsa\sheger\src\sheger.cpp
+	"Sheger.h"
+	<iostream>
+	"Sheger.h"
+	<fstream>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+
