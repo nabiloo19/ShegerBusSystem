@@ -1,169 +1,317 @@
+#include "Sheger.h"
 #include <iostream>
 #include "Sheger.h"
-#include "monitor.h"
-#include <cstdlib>
+#include <fstream>
 #include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
 using namespace std;
 
-int main()
+
+
+int id;//global variable
+
+Sheger::Sheger()
 {
-    Sheger Driver;
-    monitor m;
-    int choice,how_many,pass;
-    char retry, CHOICES;;
+    next_d=NULL;
+    node=NULL;
+    head=NULL;
+    tail=NULL;
+}
 
-    do
+void Sheger::create()//to create a node
+{
+
+
+
+    node=new Sheger;
+    accept(node);//calling of accept function
+    node->next_d=NULL;
+
+    if(head==NULL)//only to assign the first node
     {
-        home:
-        system("cls");
 
-        cout<<"\n\nYou Are:-\n";
-        cout<<"\n1,Registrar";
-        cout<<"\n2,Monitor";
-        cout<<"\n3,Exit\n";
-        cout<<"\nSelect: #";
-        cin>>choice;
-
-
-        if(choice==1)
-        {        system("cls");
-             cout<<"Enter the Password: #";cin>>pass;
-             if(pass==1234){
-            do
-            {
-                menu:
-                system("cls");
-
-                cout<<"*Menu*";
-                cout<<"\n\n 1,Register";
-                cout<<"\n 2,Display";
-                cout<<"\n 3,Search ";
-                cout<<"\n 4,Update ";
-                cout<<"\n 5,Delete \n";
-                cout<<"\nSelect Your Choice: #";
-                cin>>choice;
-
-                switch(choice)
-                {
-
-                case 1:
-system("cls");
-                    cout<<"How many Drivers You Want to Register: #";
-                    cin>>how_many;
-                    for( int i=1; i<=how_many; i++)
-                    {
-
-                        Driver.create();
-
-                    }
-                    Driver.writeToFile();
-
-                    break;
-
-                case 2:
-                    system("cls");
-                    Driver.displayFromFile();
-                    break;
-
-                case 3:
-                    system("cls");
-                    Driver.search();
-                    break;
-
-                case 4:
-                    system("cls");
-                    Driver.update();
-                    break;
-
-                case 5:
-                    system("cls");
-                    Driver.del();
-                    break;
-
-
-                default:
-
-                    cout<<"\n!Invalid entry!\n";
-                    cout<<"\n!Wanna the main menu, press 'm' !";
-                    cout<<"\n!Wanna go back a step, press 'n' !\n\n";
-                    cin>>CHOICES;
-                    if(CHOICES=='M'|| CHOICES=='m')
-                    {
-
-                        goto home;
-                    }
-
-                    else if(CHOICES=='n'|| CHOICES=='N')
-                    {
-
-                        goto menu;
-                    }
-
-                    else{
-                        exit(0);
-                    }
-                    break;
-                }
-
-                cout<<"\nPress 1 to go back:#";
-                cin>>retry;
-            }while(retry=='1');
-             }else{
-             cout<<"\nIncorrect password\n";}
-        }
-
-        else if(choice==2)
-        {
-            system("cls");
-            cout<<"1,Display Driver Info\n";
-            cout<<"2,Search Driver\n";
-            cout<<"\tSelect Your Choice:";
-            cin>>choice;
-
-            switch(choice)
-            {
-
-            case 1:
-                cout<<"Under Building\n";
-            case 2:
-                //next time
-                cout<<"Under Building\n";
-
-            break;
-
-                default:
-
-                    cout<<"\n!Invalid entry!\n";
-                    cout<<"\n!Wanna the main menu, press 'm' !";
-                    cout<<"\n!Wanna go back a step, press 'n' !\n\n";
-                    cin>>CHOICES;
-                    if(CHOICES=='M'|| CHOICES=='m')
-                    {
-
-                        goto home;
-                    }
-
-                    else if(CHOICES=='n'|| CHOICES=='N')
-                    {
-
-                        goto menu;
-                    }
-
-                    else{
-                        exit(0);
-                    }
-            }
-        }
-
-        else if(choice==3)
-        {
-            exit(0);
-        }
-
-        cout<<"\nPress H to go back to home\n";
-        cin>>retry;
+        head=node;
+        tail=node;
+        node=NULL;
     }
-    while(retry=='h' || retry=='H');
+
+    else    //to create sequence of nodes after the head
+    {
+
+        tail->next_d=node;
+        tail=node;
+
+    }
+}
+
+void Sheger::accept(Sheger *temp)//a function to accept  driver info
+{
+
+system("cls");
+			cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n";
+			cout<<"\t\t\t@      ACCEPT   @\n";
+			cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n\n";
+
+cout<<"\n\n\tEnter Driver's Details:\n";
 
 
+    cout<<"Enter Driver's Name: ";
+    cin.ignore();
+    cin.getline(temp->d_name,20);
+    cout<<"Enter Driver's Phone:-# ";
+    cin>>temp->phone;
+    cout<<"Enter Driver's Address:- ";
+    cin.ignore();
+    cin.getline(temp->address,15);
+    cout<<"Enter Driver's ID: #";
+    cin>>temp->id;
+    cout<<"Enter Truck Model:- ";
+    cin.ignore();
+    cin.getline(temp->truckmodel,15);
+    cout<<"Enter Truck Number:- ";
+    cin.ignore();
+    cin.getline(temp->truckno,15);
+    cout<<"From:- ";
+    cin.ignore();
+    cin.getline(temp->from,15);
+    cout<<"To:- ";
+    cin.ignore();
+    cin.getline(temp->to,15);
+
+    cout<<endl;
+
+}
+
+
+void Sheger::search()// search function
+{
+    	system("cls");
+
+	cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n";
+	cout<<"\t\t\t@      SEARCH       @\n";
+	cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n\n";
+
+    node=new Sheger;
+
+    int flag=0;
+    cout<<"Enter ID number to Search"<<endl;
+    cin>>id;
+
+    for(node=head; node!=NULL; node=node->next_d)
+    {
+
+        if(node->id==id)
+        {
+            flag=1;
+            break;
+        }
+
+    }
+    if(flag==1)
+    {
+        cout<<"***********************************************************************************************************************";
+        cout<<"\nSearch found"<<endl;
+        cout<<"\n\tDriver's Name- "<<node->d_name<<"\tDriver's Phone-# "<<node->phone<<"\tDriver's Address- "<<node->address;
+        cout<<"\n\n\t\t truck Model:- "<<node->truckmodel<<"\t\t truck Number:-# "<<node->truckno<<"\t\tDriver's ID-# "<<node->id;
+        cout<<"\n\n\t\t\tFrom:- "<<node->from<<"\t\t\tTo- "<<node->to<<endl;
+        cout<<"***********************************************************************************************************************\n\n";
+    }
+    else
+    {
+        cout<<"\nsearch not found!!"<<endl;
+    }
+
+
+}
+
+void Sheger::update() // update function
+{
+
+    	cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n";
+	cout<<"\t\t\t@        UPDATE       @\n";
+	cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n\n";
+
+
+    int m;
+
+    node=new Sheger;
+    node=head;
+
+    cout<<"Enter Drivers' ID to Update\n";
+    cin>>id;
+
+    while(node->id!=id)
+    {
+        node=node->next_d;
+    }
+    cout<<"\nDrivers' Info\n"<<endl;
+     cout<<"\n\tDriver's Name- "<<node->d_name<<"\tDriver's Phone-# "<<node->phone<<"\tDriver's Address- "<<node->address;
+        cout<<"\n\n\t\t truck Model:- "<<node->truckmodel<<"\t\t truck Number:-# "<<node->truckno<<"\t\tDriver's ID-# "<<node->id;
+        cout<<"\n\n\t\t\tFrom:- "<<node->from<<"\t\t\tTo- "<<node->to<<endl;
+
+    cout<<"\n\n\t\t->Modify Options:-Which Data do you want to Modify?\n\n"
+			 		"\t1,Name\n"
+			 		"\t2,Phone Number\n"
+			 		"\t3,Address\n"
+			 		"\t4,ID\n"
+			 		"\t5,Truck model\n"
+			 		"\t6,Truck Number\n"
+			 		"\t7,From & To\n"
+			 		"\t8,The Whole Data\n"
+			 		"\t\t\tSelect Your Option:-";
+
+			 		cin>>m;
+
+            if(m==1)
+			{
+
+             cout<<"Enter Driver's Name: ";
+    cin.ignore();
+    cin.getline(node->d_name,20);
+
+			}
+
+            else if(m==2)
+			{
+            	cout<<"Enter Driver's Phone:-# ";
+    cin>>node->phone;
+			}
+
+			else if(m==3)
+			{
+            	 cout<<"Enter Driver's Address:- ";
+    cin.ignore();
+    cin.getline(node->address,15);
+			}
+
+			else if(m==4)
+			{
+             	cout<<"\nEnter Driver's ID: #";
+    cin>>node->id;
+			 }
+
+			else if(m==5)
+			{
+             	cout<<"Enter Truck Model:- ";
+    cin.ignore();
+    cin.getline(node->truckmodel,15);
+			 }
+
+			else if(m==6)
+			{
+            	cout<<"\nEnter Truck Number:- ";
+    cin.ignore();
+    cin.getline(node->truckno,15);
+			}
+
+			else if(m==7)
+			{
+            	 cout<<"\nFrom:- ";
+    cin.ignore();
+    cin.getline(node->from,15);
+    cout<<"\nTo:- ";
+    cin.ignore();
+    cin.getline(node->to,15);
+			}
+
+			else if(m==8)
+			{
+			system("cls");
+
+
+    cout<<"Enter Driver's Name: ";
+    cin.ignore();
+    cin.getline(node->d_name,20);
+    cout<<"Enter Driver's Phone:-# ";
+    cin>>node->phone;
+    cout<<"Enter Driver's Address:- ";
+    cin.ignore();
+    cin.getline(node->address,15);
+    cout<<"Enter Driver's ID: #";
+    cin>>node->id;
+    cout<<"Enter Truck Model:- ";
+    cin.ignore();
+    cin.getline(node->truckmodel,15);
+    cout<<"Enter Truck Number:- ";
+    cin.ignore();
+    cin.getline(node->truckno,15);
+    cout<<"From:- ";
+    cin.ignore();
+    cin.getline(node->from,15);
+    cout<<"To:- ";
+    cin.ignore();
+    cin.getline(node->to,15);
+			}
+
+
+
+    writeToFile();
+
+
+}
+
+void Sheger::del()//delete function
+{
+
+    cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n";
+	cout<<"\t\t\t@        DELETE       @\n";
+	cout<<"\t\t\t@@@@@@@@@@@@@@@@@@@@@\n\n";
+    Sheger *prev=new Sheger;//declaration of a new node
+    node=new Sheger;
+
+
+    cout<<"Enter ID Number to Delete:"<<endl;
+    cin>>id;
+    prev=head;
+    node=head;
+    int flag=1;
+
+    while(node->id!=id)
+    {
+        prev=node;
+        node=node->next_d;
+        flag++;
+    }
+
+    if(flag==1) //if the first node deleted
+    {
+        head=head->next_d;
+        delete node;
+    }
+    prev->next_d = node->next_d;//connect the previous and the next node
+    node->next_d=NULL;//make it null
+    delete node;//then delete the node
+    cout<<endl<<"Recored Deleted";
+    writeToFile();//update the file
+
+
+}
+
+void Sheger::writeToFile()
+{
+    ofstream fin("Record.txt");//create record file
+    int i=1;
+    for (node =head; node !=NULL; node=node->next_d) //store each data in the file till the end of the node
+    {
+        fin<<"Driver-"<<i++<<endl;
+        fin<<"\n\tDriver's Name- "<<node->d_name<<"\tDriver's Phone-# "<<node->phone<<"\tDriver's Address- "<<node->address;
+        fin<<"\n\n\t\t truck Model:- "<<node->truckmodel<<"\t\t truck Number:-# "<<node->truckno<<"\t\tDriver's ID-# "<<node->id;
+        fin<<"\n\n\t\t\tFrom:- "<<node->from<<"\t\t\tTo- "<<node->to<<endl;
+    }
+    fin.close();
+
+}
+
+void Sheger::displayFromFile()
+{
+    ifstream fout("Record.txt");//opening record file
+
+    string line;
+    while (getline (fout,line))
+    {
+        cout << line << endl;//dispalying data
+    }
+    fout.close();
 }
