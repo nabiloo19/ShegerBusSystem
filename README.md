@@ -1,6 +1,6 @@
 # ShegerBusSystem
 
-A complete bus system written in c++ using pure OOP and Data Structure concept, Singly Linked List.. 
+An Ethiopian, locally built Bus System, written in C++ using pure OOP and Data Structure concept, Singly Linked List.
 
 
 To run the program:
