@@ -1,7 +1,0 @@
-Driver-1
-
-	Driver's Name- A	Driver's Phone-# 1	Driver's Address- A
-
-		 truck Model:- A		 truck Number:-# 		Driver's ID-# 1
-
-			From:- 			To- 
