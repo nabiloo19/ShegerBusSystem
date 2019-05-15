@@ -6,7 +6,7 @@ A complete bus system written in c++ using pure OOP and Data Structure concept, 
 To run the program:
 
        -> if you are a developer, use the "Sheger" project file which you will find as a 2KB size. Its name is Sheger.cbp
-       -> if you are not a developer or just don't want to run through the code, try looking for the .exe file. Run the file as an                   adminstrator just in case!
+       -> if you are not a developer or just don't want to run through the code, try looking for the .exe file. Run the file as an      adminstrator just in case!
        
                *Its location is Sheger\bin\Debug\Sheger.exe
 
