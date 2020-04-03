@@ -27,7 +27,8 @@ int main()
         cout<<"\n\n\t\tYou Are:-\n";
         cout<<"\n\t\t1,Registrar";
         cout<<"\n\t\t2,Monitor";
-        cout<<"\n\t\t3,Exit";
+        cout<<"\n\t\t3,Manager";
+        cout<<"\n\t\t4,Exit";
         cout<<"\n\t\t\tSelect: #";
         cin>>choice;
 
